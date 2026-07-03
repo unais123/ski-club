@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="KASHMIR GREAT LAKES">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2C6BC8"/>
+      <stop offset="1" stop-color="#BFE0FF"/>
+    </linearGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".28"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="930" cy="170" r="60" fill="#ffffff" opacity=".85"/>
+  <path d="M-50 560 L230 300 L410 470 L560 330 L760 560 Z" fill="#1E4FA5"/>
+  <path d="M300 620 L620 260 L830 450 L980 340 L1250 620 Z" fill="#3D7FD6"/>
+  <path d="M-50 800 L200 570 L480 800 Z" fill="#12305E"/>
+  <path d="M700 800 L1000 520 L1250 800 Z" fill="#12305E"/>
+  <path d="M560 348 L620 260 L688 322 L654 330 L630 300 L600 336 Z" fill="#ffffff" opacity=".92"/>
+  <path d="M180 348 L230 300 L286 352 L258 342 L232 322 L206 350 Z" fill="#ffffff" opacity=".88"/>
+  <rect width="1200" height="800" fill="url(#haze)"/>
+  <text x="600" y="742" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="4" fill="#ffffff" opacity=".85">KASHMIR GREAT LAKES</text>
+</svg>

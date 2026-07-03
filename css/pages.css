@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Gulmarg Ski Club — pages.css
+   Inner-page hero, itineraries, pricing, detail layouts, contact, reviews
+   ========================================================================== */
+
+/* ------------------------------------------------------------- page hero */
+.page-hero {
+  position: relative;
+  min-height: 68vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 9rem 0 4rem;
+  color: var(--c-white);
+  isolation: isolate;
+  overflow: hidden;
+}
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.page-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(16, 24, 62, 0.5), rgba(16, 24, 62, 0.15) 45%, rgba(16, 24, 62, 0.85));
+}
+.page-hero .breadcrumb { margin-bottom: 1.4rem; }
+.page-hero h1 { color: var(--c-white); max-width: 16ch; }
+.page-hero .lead {
+  max-width: 620px;
+  margin-top: 1.2rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+.page-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+.page-hero__meta span {
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------ split rows */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.split--flip .split__media { order: 2; }
+.split__media .img-reveal { aspect-ratio: 4 / 3; }
+.split__media img { width: 100%; height: 100%; object-fit: cover; }
+.split__body h2 { margin-top: 1rem; }
+.split__body p { margin-top: 1.1rem; }
+.split__body .btn { margin-top: 1.8rem; }
+@media (max-width: 860px) {
+  .split { grid-template-columns: 1fr; }
+  .split--flip .split__media { order: 0; }
+}
+
+/* -------------------------------------------------------------- itinerary */
+.itinerary { max-width: 860px; margin-inline: auto; position: relative; }
+.itinerary::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 27px;
+  width: 2px;
+  background: linear-gradient(var(--c-primary), var(--c-accent));
+  opacity: 0.4;
+}
+.itinerary__day {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.4rem;
+  padding-bottom: 2.2rem;
+}
+.itinerary__num {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-white);
+  border: 2px solid var(--c-primary);
+  color: var(--c-primary);
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: var(--shadow-soft);
+}
+.itinerary__body {
+  padding: 1.3rem 1.6rem;
+  border-radius: var(--radius);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+}
+.itinerary__body h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.itinerary__body p { font-size: 0.92rem; }
+.itinerary__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+.itinerary__tags span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--c-accent);
+  color: var(--c-primary);
+}
+
+/* ---------------------------------------------------------------- pricing */
+.price-cards { align-items: stretch; }
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-med); }
+.price-card--featured {
+  background: var(--g-brand);
+  color: rgba(255, 255, 255, 0.85);
+  border: none;
+  box-shadow: var(--shadow-deep);
+}
+.price-card--featured h3, .price-card--featured .price-card__amount { color: var(--c-white); }
+.price-card__tag {
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.32rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--c-navy);
+  color: var(--c-white);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.price-card h3 { font-size: 1.05rem; }
+.price-card__amount {
+  margin: 1.1rem 0 0.2rem;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--c-navy);
+  line-height: 1;
+}
+.price-card__amount small { font-size: 0.85rem; font-weight: 600; opacity: 0.7; }
+.price-card__per { font-size: 0.8rem; opacity: 0.75; }
+.price-card ul { margin: 1.6rem 0 2rem; display: grid; gap: 0.7rem; }
+.price-card li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+}
+.price-card li::before { content: "✓"; font-weight: 800; color: var(--c-primary); }
+.price-card--featured li::before { color: #A9B4FF; }
+.price-card .btn { margin-top: auto; width: 100%; }
+.price-card--featured .btn--primary {
+  background: var(--c-white);
+  color: var(--c-primary);
+}
+
+/* --------------------------------------------------------- info strip */
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.info-strip__item {
+  padding: 1.4rem;
+  border-radius: var(--radius);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  text-align: center;
+}
+.info-strip__item strong {
+  display: block;
+  color: var(--c-navy);
+  font-size: 1.05rem;
+}
+.info-strip__item span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+@media (max-width: 780px) { .info-strip { grid-template-columns: repeat(2, 1fr); } }
+
+/* ------------------------------------------------------- includes lists */
+.includes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+}
+.includes__col {
+  padding: 1.8rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+}
+.includes__col h3 { margin-bottom: 1.1rem; font-size: 1rem; }
+.includes__col li {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.45rem 0;
+  font-size: 0.9rem;
+}
+.includes__col--yes li::before { content: "✓"; color: #1E7B5A; font-weight: 800; }
+.includes__col--no li::before { content: "✕"; color: #C0392B; font-weight: 800; }
+@media (max-width: 700px) { .includes { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------- related pages */
+.related { border-top: 1px solid var(--c-line); }
+.related .card__media { aspect-ratio: 16 / 10; }
+
+/* ---------------------------------------------------------------- contact */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.contact-info { display: grid; gap: 1rem; }
+.contact-info__item {
+  display: flex;
+  gap: 1.1rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+}
+.contact-info__icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--c-accent);
+  color: var(--c-primary);
+  font-size: 1.1rem;
+}
+.contact-info__item strong { display: block; color: var(--c-navy); font-size: 0.95rem; }
+.contact-info__item span, .contact-info__item a { font-size: 0.88rem; color: var(--c-body); }
+.contact-info__item a:hover { color: var(--c-primary); }
+
+.form {
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-soft);
+}
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+.form__field { margin-bottom: 1.1rem; }
+.form label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+  margin-bottom: 0.45rem;
+}
+.form input, .form select, .form textarea {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border-radius: 14px;
+  border: 1.5px solid var(--c-line-strong);
+  background: var(--c-bg);
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form input:focus, .form select:focus, .form textarea:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 4px rgba(42, 36, 200, 0.12);
+}
+.form textarea { min-height: 130px; resize: vertical; }
+.form__status { margin-top: 1rem; font-weight: 600; font-size: 0.9rem; color: #1E7B5A; }
+@media (max-width: 880px) {
+  .contact-wrap { grid-template-columns: 1fr; }
+  .form__row { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------- review badges */
+.review-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.review-badge {
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.6rem 1.8rem;
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-soft);
+}
+.review-badge__score {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--c-navy);
+  line-height: 1;
+}
+.review-badge__detail .review-card__stars { font-size: 0.85rem; }
+.review-badge__detail strong { display: block; font-size: 0.9rem; color: var(--c-navy); }
+.review-badge__detail small { color: var(--c-muted); font-size: 0.78rem; }
+
+/* -------------------------------------------------------- trek anchors */
+.anchor-target { scroll-margin-top: 120px; }
+
+/* ----------------------------------------------------- horizontal pin */
+.pin-strip { background: var(--c-navy); overflow: hidden; }
+.pin-strip__inner {
+  display: flex;
+  gap: 1.6rem;
+  padding: 1rem 0 2rem;
+  will-change: transform;
+}
+.pin-strip__inner > * { flex: 0 0 min(80vw, 420px); }

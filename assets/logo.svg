@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 400" role="img" aria-label="Gulmarg Ski Club logo">
+  <!-- Badge outer shield -->
+  <path d="M20 42 Q20 12 50 12 H290 Q320 12 320 42 V250 Q320 340 170 392 Q20 340 20 250 Z" fill="#2A24C8"/>
+  <!-- Inner white keyline -->
+  <path d="M36 48 Q36 26 58 26 H282 Q304 26 304 48 V246 Q304 328 170 376 Q36 328 36 246 Z" fill="none" stroke="#FFFFFF" stroke-width="7"/>
+  <!-- Skier line art -->
+  <g stroke="#FFFFFF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- skis -->
+    <path d="M62 208 L262 132"/>
+    <path d="M70 222 L270 146"/>
+    <!-- legs -->
+    <path d="M150 178 L168 132 L196 122"/>
+    <path d="M158 172 L186 140"/>
+    <!-- body tucked -->
+    <path d="M196 122 Q208 96 188 84 Q170 74 152 86 L120 108"/>
+    <!-- head -->
+    <circle cx="146" cy="76" r="15"/>
+    <!-- arms -->
+    <path d="M158 96 L118 112"/>
+    <!-- poles -->
+    <path d="M120 108 L236 62"/>
+    <path d="M118 114 L240 72"/>
+    <path d="M232 56 L244 68 M240 52 L230 72"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="170" y="278" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="52" font-weight="800" letter-spacing="2" fill="#FFFFFF">GULMARG</text>
+  <text x="170" y="326" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="10" fill="#FFFFFF">SKI CLUB</text>
+</svg>
