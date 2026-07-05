@@ -1,22 +1,38 @@
 # Hero Image-Sequence Frames
 
-Drop the 500 rendered hero frames into this folder, named exactly:
+This folder holds the homepage hero scroll sequence — **500 frames**, currently
+named:
 
 ```
-frame_0001.webp
-frame_0002.webp
+0001.jpg
+0002.jpg
 …
-frame_0500.webp
+0500.jpg
 ```
 
-- **Format:** WebP recommended (best size/quality). JPEG also works — change
-  `ext: ".webp"` to `ext: ".jpg"` in `js/hero-sequence.js`.
-- **Resolution:** 1920×1080 is the sweet spot. The canvas cover-fits any
-  aspect ratio.
-- **Compression:** target ≤ 60 KB per frame (quality 60–70 WebP). 500 frames
-  at 60 KB ≈ 30 MB total; the loader streams them coarse-to-fine so the hero
-  is scrubbable within a second or two.
+The hero engine (`js/hero-sequence.js`) is configured for exactly this:
 
-No code changes are needed: `js/hero-sequence.js` probes for `frame_0001`
-on page load. If found, the real sequence is used; if not, the built-in
-procedural mountain flyover renders instead.
+```js
+frameCount: 500,
+path: (i) => `assets/hero-frames/${String(i).padStart(4, "0")}${CONFIG.ext}`,
+ext: ".jpg",
+```
+
+## Replacing or re-exporting frames
+
+- Keep the `0001.jpg … 0500.jpg` naming and the count at 500 — or update
+  `frameCount` / `path` / `ext` in `js/hero-sequence.js` to match.
+- On load the engine probes `0001.jpg`; if present it preloads all frames
+  coarse-to-fine (every 10th frame first so scrubbing works within a second or
+  two, then the gaps fill in).
+- If the frames are ever missing, the hero falls back automatically — first to
+  the static photo `assets/images/hero_winter_mountain.jpg` (set via
+  `CONFIG.poster`), then to a procedural mountain scene.
+
+## Performance note
+
+The current frames are 4K (3840×2160) JPEGs, ~150–260 KB each — roughly
+90–120 MB for the full set. That works, but for the fastest possible load you
+can down-res the frames to ~1920×1080 and re-encode at quality ~70 (or convert
+to WebP and set `ext: ".webp"`), which typically cuts the total to ~25–40 MB
+with no visible loss at hero size.

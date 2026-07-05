@@ -26,10 +26,15 @@
 
   const CONFIG = {
     frameCount: 500,
-    path: (i) => `assets/hero-frames/frame_${String(i).padStart(4, "0")}${CONFIG.ext}`,
-    ext: ".webp",            // change to ".jpg" if you export JPEG frames
+    // Frames are named 0001.jpg … 0500.jpg in assets/hero-frames/
+    path: (i) => `assets/hero-frames/${String(i).padStart(4, "0")}${CONFIG.ext}`,
+    ext: ".jpg",             // uploaded frames are JPEG
     lerp: 0.12,              // scrub smoothing (lower = floatier)
     maxDpr: 2,               // cap devicePixelRatio for performance
+    // Static cinematic hero photo used when no frame sequence is present.
+    // Rendered with a slow scroll-driven Ken-Burns zoom. Set to null to
+    // fall back to the procedural mountain scene instead.
+    poster: "assets/images/hero_winter_mountain.jpg",
   };
 
   const hero = document.querySelector(".hero");
@@ -48,7 +53,10 @@
   let smooth = 0;            // eased progress used for rendering
   let frames = null;         // Image[] when real frames are in use
   let loadedCount = 0;
-  let mode = "procedural";   // "frames" once real assets are detected
+  let posterImg = null;      // static hero photo, once loaded
+  // Render mode: "procedural" (drawn scene) → "poster" (static photo) →
+  // "frames" (real image sequence), upgrading as each asset becomes available.
+  let mode = "procedural";
 
   /* ------------------------------------------------------------ sizing */
   function resize() {
@@ -60,12 +68,48 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
+  /* -------------------------------------------------------- poster mode */
+  function loadPoster() {
+    if (!CONFIG.poster) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => {
+      posterImg = img;
+      // Only promote to poster mode if the real frame sequence hasn't won.
+      if (mode !== "frames") { mode = "poster"; needsDraw = true; }
+      // The frame counter is meaningless without a sequence — hide it.
+      if (counterEl) counterEl.style.display = "none";
+    };
+    img.onerror = () => { /* keep procedural fallback */ };
+    img.src = CONFIG.poster;
+  }
+
   /* -------------------------------------------------------- frame mode */
   function probeFrames() {
     const probe = new Image();
-    probe.onload = () => { mode = "frames"; preloadAll(); };
-    probe.onerror = () => { /* keep procedural fallback */ };
+    probe.onload = () => {
+      mode = "frames";
+      needsDraw = true;                       // repaint away from the fallback
+      if (counterEl) counterEl.style.display = "";
+      preloadAll();
+    };
+    probe.onerror = () => { /* keep poster / procedural fallback */ };
     probe.src = CONFIG.path(1);
+  }
+
+  // Draw the static hero photo cover-fit with a scroll-driven zoom + drift.
+  function drawPoster(t) {
+    const img = posterImg;
+    const zoom = 1 + t * 0.14;                 // subtle Ken-Burns push-in
+    const ir = img.naturalWidth / img.naturalHeight;
+    const cr = vw / vh;
+    let dw, dh;
+    if (ir > cr) { dh = vh * zoom; dw = dh * ir; }
+    else         { dw = vw * zoom; dh = dw / ir; }
+    const dx = (vw - dw) / 2;
+    const dy = (vh - dh) / 2 - t * vh * 0.06;  // slight upward drift
+    ctx.clearRect(0, 0, vw, vh);
+    ctx.drawImage(img, dx, dy, dw, dh);
   }
 
   function preloadAll() {
@@ -82,7 +126,13 @@
       const idx = order[cursor++];
       const img = new Image();
       img.decoding = "async";
-      img.onload = img.onerror = () => { loadedCount++; next(); };
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        // If this frame is the one currently on screen, force a repaint so
+        // the hero swaps from the fallback the instant its frame arrives.
+        if (idx - 1 === lastDrawnFrame) needsDraw = true;
+        next();
+      };
       img.src = CONFIG.path(idx);
       frames[idx - 1] = img;
     }
@@ -226,17 +276,19 @@
       if (mode === "frames" && frames) {
         const img = nearestLoaded(frameIdx);
         if (img) { ctx.clearRect(0, 0, vw, vh); drawFrameImage(img); }
+        else if (posterImg) drawPoster(smooth);
         else drawProcedural(smooth);
+        if (counterEl) {
+          counterEl.innerHTML =
+            `<strong>${String(frameIdx + 1).padStart(3, "0")}</strong> / ${CONFIG.frameCount}`;
+        }
+      } else if (mode === "poster" && posterImg) {
+        drawPoster(smooth);
       } else {
         drawProcedural(smooth);
       }
       lastDrawnFrame = frameIdx;
       needsDraw = false;
-
-      if (counterEl) {
-        counterEl.innerHTML =
-          `<strong>${String(frameIdx + 1).padStart(3, "0")}</strong> / ${CONFIG.frameCount}`;
-      }
     }
 
     // Hero copy drifts up + fades across the first 60% of the runway
@@ -312,6 +364,7 @@
   window.addEventListener("resize", () => { resize(); needsDraw = true; });
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+  loadPoster();
   probeFrames();
   initSnow();
   requestAnimationFrame(render);
