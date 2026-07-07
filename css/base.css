@@ -74,7 +74,10 @@ body {
   line-height: 1.7;
   color: var(--c-body);
   background: var(--c-bg);
-  overflow-x: hidden;
+  /* NOTE: do not set overflow-x here — `overflow-x:hidden` on <body> forces
+     overflow-y to `auto`, making body a scroll container that breaks the
+     sticky hero. Horizontal overflow is contained by `overflow-x:clip` on
+     <html> above instead. */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -159,7 +162,9 @@ h3 { font-size: var(--fs-h3); }
 }
 .container--wide { width: min(100% - 2.5rem, var(--container-wide)); }
 
-.section { padding-block: var(--space-section); }
+/* clip contains sideways overflow from reveal transforms (translateX) without
+   creating a scroll container on a hero ancestor — .section is never one. */
+.section { padding-block: var(--space-section); overflow-x: clip; }
 .section--tint { background: var(--c-accent); }
 .section--navy { background: var(--c-navy); color: rgba(255, 255, 255, 0.82); }
 .section--navy h2, .section--navy h3 { color: var(--c-white); }
