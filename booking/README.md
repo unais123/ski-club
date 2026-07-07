@@ -116,8 +116,11 @@ expedition, dates, persons, from, message, timestamp`.
 ### 4a. Create the sheet
 New Google Sheet → name row 1 exactly:
 
-| Timestamp | Name | Phone | Email | Expedition | Start Date | End Date | Persons | Location | Message | Status |
-|-----------|------|-------|-------|------------|------------|----------|---------|----------|---------|--------|
+| Timestamp | Name | Phone | Email | Expedition | Level | Start Date | End Date | Persons | Location | Message | Status |
+|-----------|------|-------|-------|------------|-------|------------|----------|---------|----------|---------|--------|
+
+> **Level** is filled only for lesson-type expeditions (Skiing, Snowboarding,
+> Private Instructor) — Basic / Intermediate / Advanced; blank otherwise.
 
 ### 4b. Apps Script web app
 In the sheet: **Extensions → Apps Script**, replace the contents with:
@@ -137,6 +140,7 @@ function doPost(e) {
       d.phone || '',
       d.email || '',
       d.expedition || '',
+      d.level || '',
       d.start || '',
       d.end || '',
       d.persons || '',

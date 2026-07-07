@@ -135,6 +135,14 @@
 .gsc-field .gsc-req { color: #d64545; }
 
 .gsc-field select { cursor: pointer; }
+/* level select uses its first option as a placeholder, so keep its label
+   floated at all times to avoid overlapping that text */
+.gsc-level > label {
+  transform: translateY(-0.7rem) scale(0.74);
+  color: var(--gsc-primary);
+  font-weight: 700;
+}
+.gsc-level[hidden] { display: none !important; }
 .gsc-select-wrap::after {
   content: "▾";
   position: absolute;

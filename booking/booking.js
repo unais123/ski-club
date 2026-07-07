@@ -38,6 +38,9 @@
     "Tour Package", "Custom",
   ];
 
+  // Expeditions that require a skill level (Basic / Intermediate / Advanced)
+  const LEVEL_EXPEDITIONS = ["Skiing", "Snowboarding", "Private Instructor"];
+
   // Common country dial codes (default +91)
   const DIAL_CODES = [
     ["+91", "🇮🇳"], ["+971", "🇦🇪"], ["+44", "🇬🇧"], ["+1", "🇺🇸"],
@@ -121,6 +124,17 @@
           <select id="gsc-expedition" name="expedition" required>${optionList(preselect)}</select>
           <label for="gsc-expedition" class="${preselect ? "gsc-lifted" : ""}">Expedition <span class="gsc-req">*</span></label>
           <p class="gsc-error">Please choose an expedition.</p>
+        </div>
+
+        <div class="gsc-field gsc-col-2 gsc-select-wrap gsc-level" id="gsc-level-field" hidden>
+          <select id="gsc-level" name="level">
+            <option value="">Choose your level…</option>
+            <option value="Basic">Basic — first time on snow</option>
+            <option value="Intermediate">Intermediate — linking turns</option>
+            <option value="Advanced">Advanced — confident / off-piste</option>
+          </select>
+          <label for="gsc-level">Skill Level <span class="gsc-req">*</span></label>
+          <p class="gsc-error">Please select your skill level.</p>
         </div>
 
         <div class="gsc-field gsc-col-2">
@@ -292,14 +306,26 @@
     const summary = form.querySelector(".gsc-summary");
     const toast = form.querySelector(".gsc-toast");
     const modal = container.querySelector(".gsc-modal");
+    const expSelect = form.querySelector("#gsc-expedition");
+    const levelField = form.querySelector("#gsc-level-field");
+    const levelSelect = form.querySelector("#gsc-level");
     let personCount = 1;
     let submitting = false;
+
+    // Show the skill-level field only for lesson-type expeditions.
+    function updateLevel() {
+      const show = LEVEL_EXPEDITIONS.includes(expSelect.value);
+      levelField.hidden = !show;
+      if (!show) { levelSelect.value = ""; clearError(levelSelect); }
+    }
 
     // floating-label state on load + input
     form.querySelectorAll("input, textarea, select").forEach(setFilled);
     form.querySelectorAll("input, textarea").forEach(el =>
       el.addEventListener("input", () => { setFilled(el); clearError(el); }));
-    form.querySelector("#gsc-expedition").addEventListener("change", (e) => setFilled(e.target));
+    expSelect.addEventListener("change", (e) => { setFilled(e.target); updateLevel(); });
+    levelSelect.addEventListener("change", (e) => { setFilled(e.target); clearError(e.target); });
+    updateLevel(); // reflect any preselected expedition on load
 
     // ---- stepper
     form.querySelectorAll(".gsc-step-btn").forEach(btn => btn.addEventListener("click", () => {
@@ -351,6 +377,7 @@
       check(exp, !!exp.value);
       check(from, from.value.trim().length >= 2);
       check(datesInput, !!startInput.value);
+      if (!levelField.hidden) check(levelSelect, !!levelSelect.value);
       if (!ok) {
         const firstBad = form.querySelector(".gsc-invalid");
         if (firstBad) firstBad.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -372,6 +399,7 @@
         phone: `${dial.value} ${form.querySelector("#gsc-phone").value.trim()}`,
         email: form.querySelector("#gsc-email").value.trim(),
         expedition: form.querySelector("#gsc-expedition").value,
+        level: levelField.hidden ? "" : levelSelect.value,
         start: s, end: e || s, datesLabel,
         persons: personCount,
         from: form.querySelector("#gsc-from").value.trim(),
@@ -389,6 +417,7 @@
           <dt>Phone</dt><dd>${esc(d.phone)}</dd>
           <dt>Email</dt><dd>${esc(d.email)}</dd>
           <dt>Expedition</dt><dd>${esc(d.expedition)}</dd>
+          ${d.level ? `<dt>Level</dt><dd>${esc(d.level)}</dd>` : ""}
           <dt>Travel Dates</dt><dd>${esc(d.datesLabel)}</dd>
           <dt>Persons</dt><dd>${d.persons}</dd>
           <dt>From</dt><dd>${esc(d.from)}</dd>
@@ -405,7 +434,7 @@
 👤 Name: ${d.name}
 📞 Phone: ${d.phone}
 📧 Email: ${d.email}
-🎿 Expedition: ${d.expedition}
+🎿 Expedition: ${d.expedition}${d.level ? `\n🏂 Level: ${d.level}` : ""}
 📅 Travel Dates: ${d.datesLabel}
 👥 Persons: ${d.persons}
 📍 From: ${d.from}
@@ -426,7 +455,7 @@ Please confirm availability.`;
           to_email: CONFIG.businessEmail,
           subject: "New Booking Request - Gulmarg Ski Club",
           name: d.name, phone: d.phone, email: d.email,
-          expedition: d.expedition, dates: d.datesLabel,
+          expedition: d.expedition, level: d.level || "—", dates: d.datesLabel,
           persons: d.persons, from: d.from, message: d.message,
           timestamp: d.timestamp,
         }).then(() => ({ ok: true })).catch((err) => ({ error: err }));
@@ -501,7 +530,8 @@ Please confirm availability.`;
         personCount = 1; persons.textContent = "1";
         startInput.value = ""; endInput.value = "";
         form.querySelectorAll("input, textarea, select").forEach(setFilled);
-        setFilled(form.querySelector("#gsc-expedition"));
+        setFilled(expSelect);
+        updateLevel();
         form.querySelector("#gsc-name").focus();
       }
     });
