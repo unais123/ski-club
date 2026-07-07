@@ -264,16 +264,66 @@
     <section class="section section--tint" id="trail-map" aria-label="Trail map">
       <div class="container">
         <div class="section-head"><p class="eyebrow" data-reveal>The Mountain</p><h2 data-split>Gulmarg trail map</h2><p data-reveal>From the learner meadow at the base to Apharwat's off-piste bowls at 4,000 m, here's how Gulmarg's terrain stacks up — and where our courses take you.</p></div>
-        <div class="trailmap" data-reveal><svg viewBox="0 0 1000 700" role="img" aria-label="Gulmarg ski area trail map" xmlns="http://www.w3.org/2000/svg">
-  <defs><linearGradient id="skySki" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#EEF1FF"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>
-  <rect width="1000" height="700" fill="url(#skySki)"/>
-  <path d="M0 640 L240 300 L360 380 L520 180 L680 340 L820 260 L1000 560 L1000 700 L0 700 Z" fill="#10183E" opacity="0.10"/><path d="M120 640 L520 180 L900 640 Z" fill="#10183E" opacity="0.08"/><path d="M470 235 L520 180 L575 240 L545 228 L520 205 L495 240 Z" fill="#fff" stroke="#2A24C8" stroke-width="1.5" opacity="0.9"/>
-  <text x="40" y="52" font-size="22" font-weight="800" fill="#10183E">Gulmarg &amp; Mount Apharwat — Trail Map</text>
-  <text x="40" y="74" font-size="13" font-weight="600" fill="#7A81A6">Illustrative piste map — not to scale</text>
-  <path d="M640 590 q -70 30 -150 40 q -60 8 -120 5" fill="none" stroke="#1E7B5A" stroke-width="4" stroke-linecap="round"/><path d="M640 590 q 60 25 140 30" fill="none" stroke="#1E7B5A" stroke-width="4" stroke-linecap="round"/><path d="M470 430 q -80 90 -110 160" fill="none" stroke="#2A24C8" stroke-width="4" stroke-linecap="round"/><path d="M470 430 q 60 80 160 155" fill="none" stroke="#2A24C8" stroke-width="4" stroke-linecap="round"/><path d="M520 250 q -120 90 -190 300" fill="none" stroke="#0C1230" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 0"/><path d="M520 250 q 120 110 230 320" fill="none" stroke="#0C1230" stroke-width="4" stroke-linecap="round"/><path d="M520 250 q 20 140 40 330" fill="none" stroke="#0C1230" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 7"/><path d="M640 590 L470 430 L520 250" fill="none" stroke="#2A24C8" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/><circle cx="520" cy="180" r="9" fill="#fff" stroke="#0C1230" stroke-width="4"/><circle cx="520" cy="180" r="4" fill="#0C1230"/><text x="540" y="178" font-size="16" font-weight="800" fill="#10183E">Apharwat Summit</text><text x="540" y="196" font-size="12" font-weight="600" fill="#7A81A6">4,390 m</text><circle cx="520" cy="250" r="13" fill="#fff" stroke="#2A24C8" stroke-width="4"/><circle cx="520" cy="250" r="4" fill="#2A24C8"/><text x="540" y="248" font-size="16" font-weight="800" fill="#10183E">Gondola Phase 2</text><text x="540" y="266" font-size="12" font-weight="600" fill="#7A81A6">Apharwat shoulder · 3,950 m</text><circle cx="470" cy="430" r="13" fill="#fff" stroke="#2A24C8" stroke-width="4"/><circle cx="470" cy="430" r="4" fill="#2A24C8"/><text x="490" y="428" font-size="16" font-weight="800" fill="#10183E">Gondola Phase 1</text><text x="490" y="446" font-size="12" font-weight="600" fill="#7A81A6">Kongdoori · 3,050 m</text><circle cx="640" cy="590" r="13" fill="#fff" stroke="#2A24C8" stroke-width="4"/><circle cx="640" cy="590" r="4" fill="#2A24C8"/><text x="660" y="588" font-size="16" font-weight="800" fill="#10183E">Gulmarg Base</text><text x="660" y="606" font-size="12" font-weight="600" fill="#7A81A6">2,650 m · village & learner meadow</text>
-  <line x1="40" y1="632" x2="960" y2="632" stroke="#10183E" stroke-width="1" opacity="0.12"/>
-  <g font-size="13" font-weight="700" fill="#10183E"><line x1="70" y1="662" x2="105" y2="662" stroke="#2A24C8" stroke-width="3.5" stroke-dasharray="2 8"/><text x="115" y="666">Gondola</text><line x1="230" y1="662" x2="265" y2="662" stroke="#1E7B5A" stroke-width="4"/><text x="275" y="666">Beginner</text><line x1="390" y1="662" x2="425" y2="662" stroke="#2A24C8" stroke-width="4"/><text x="435" y="666">Intermediate</text><line x1="580" y1="662" x2="615" y2="662" stroke="#0C1230" stroke-width="4"/><text x="625" y="666">Advanced / Off-piste</text></g>
+        <div class="trailmap" data-reveal><svg viewBox="0 0 1600 900" role="img" aria-label="Gulmarg &amp; Mount Apharwat ski trail map over the real mountain face" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <image href="assets/images/ski-map-base.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid slice"/>
+  <!-- Ski resort boundary area -->
+  <path d="M300 235 L620 150 L930 95 L1230 140 L1400 360 L1330 640 L980 830 L620 800 L360 600 Z"
+        fill="#2ECC71" fill-opacity="0.22" stroke="#2ECC71" stroke-width="3" stroke-opacity="0.85" stroke-dasharray="10 7"/>
+  <!-- Advanced / off-piste runs (red) from summit down the gullies -->
+  <path d="M930 110 C 900 320, 860 520, 820 830" fill="none" stroke="#FF5A4E" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M1050 150 C 1080 360, 1120 560, 1150 780" fill="none" stroke="#FF5A4E" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Intermediate runs (blue) from mid-mountain -->
+  <path d="M900 400 C 780 520, 700 650, 640 800" fill="none" stroke="#3DA5FF" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M960 420 C 1000 560, 1010 680, 1000 820" fill="none" stroke="#3DA5FF" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Beginner runs (green) lower gentle slopes -->
+  <path d="M820 640 C 740 710, 700 770, 700 850" fill="none" stroke="#37C871" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Gondola cableway (dashed white) base -> phase1 -> phase2 -> summit -->
+  <path d="M820 872 L865 640 L905 420 L930 120" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+
+  <!-- Station markers -->
+  <g font-family="Montserrat, Arial, sans-serif">
+    <!-- Summit -->
+    <circle cx="930" cy="120" r="9" fill="#fff" stroke="#10183E" stroke-width="3"/>
+    <rect x="948" y="98" width="228" height="44" rx="8" fill="#10183E" opacity="0.86"/>
+    <text x="962" y="120" font-size="18" font-weight="800" fill="#fff">APHARWAT SUMMIT</text>
+    <text x="962" y="136" font-size="12" font-weight="600" fill="#A9B4FF">4,390 m</text>
+    <!-- Phase 2 -->
+    <circle cx="905" cy="420" r="8" fill="#fff" stroke="#3DA5FF" stroke-width="3"/>
+    <rect x="922" y="400" width="210" height="42" rx="8" fill="#10183E" opacity="0.86"/>
+    <text x="936" y="420" font-size="16" font-weight="800" fill="#fff">GONDOLA PHASE 2</text>
+    <text x="936" y="435" font-size="11" font-weight="600" fill="#A9B4FF">3,950 m</text>
+    <!-- Phase 1 -->
+    <circle cx="865" cy="640" r="8" fill="#fff" stroke="#3DA5FF" stroke-width="3"/>
+    <rect x="882" y="620" width="210" height="42" rx="8" fill="#10183E" opacity="0.86"/>
+    <text x="896" y="640" font-size="16" font-weight="800" fill="#fff">GONDOLA PHASE 1</text>
+    <text x="896" y="655" font-size="11" font-weight="600" fill="#A9B4FF">3,050 m</text>
+    <!-- Base -->
+    <circle cx="820" cy="872" r="9" fill="#fff" stroke="#37C871" stroke-width="3"/>
+    <rect x="600" y="852" width="216" height="42" rx="8" fill="#10183E" opacity="0.86"/>
+    <text x="614" y="872" font-size="16" font-weight="800" fill="#fff">GULMARG BASE</text>
+    <text x="614" y="887" font-size="11" font-weight="600" fill="#A9B4FF">2,650 m · learner meadow</text>
+  </g>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1600" height="70" fill="#10183E" opacity="0.55"/>
+  <text x="40" y="45" font-family="Montserrat, Arial, sans-serif" font-size="26" font-weight="800" fill="#fff">Gulmarg &amp; Mount Apharwat — Trail Map</text>
+
+  <!-- Legend -->
+  <g font-family="Montserrat, Arial, sans-serif">
+    <rect x="40" y="700" width="470" height="168" rx="14" fill="#10183E" opacity="0.82"/>
+    <text x="64" y="732" font-size="14" font-weight="800" letter-spacing="2" fill="#fff">LEGEND</text>
+    <rect x="64" y="748" width="26" height="14" rx="3" fill="#2ECC71" fill-opacity="0.35" stroke="#2ECC71" stroke-width="2"/>
+    <text x="100" y="760" font-size="14" font-weight="600" fill="#fff">Ski resort boundary</text>
+    <line x1="64" y1="792" x2="98" y2="792" stroke="#fff" stroke-width="3" stroke-dasharray="2 8"/>
+    <text x="108" y="797" font-size="14" font-weight="600" fill="#fff">Cableway Gondola</text>
+    <line x1="290" y1="792" x2="324" y2="792" stroke="#37C871" stroke-width="4.5"/>
+    <text x="334" y="797" font-size="14" font-weight="600" fill="#fff">Beginner</text>
+    <line x1="64" y1="826" x2="98" y2="826" stroke="#3DA5FF" stroke-width="4.5"/>
+    <text x="108" y="831" font-size="14" font-weight="600" fill="#fff">Intermediate</text>
+    <line x1="290" y1="826" x2="324" y2="826" stroke="#FF5A4E" stroke-width="4.5"/>
+    <text x="334" y="831" font-size="14" font-weight="600" fill="#fff">Advanced / Off-piste</text>
+    <text x="64" y="858" font-size="11" font-weight="600" fill="#A9B4FF">Illustrative piste map — not to scale</text>
+  </g>
 </svg></div>
         <p class="trailmap__note" data-reveal>Terrain shown is illustrative. Daily run choices depend on snow, weather and avalanche conditions — always follow your instructor's and the ski patrol's guidance on the mountain.</p>
       </div>

@@ -1,28 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 400" role="img" aria-label="Gulmarg Ski Club logo">
-  <!-- Badge outer shield -->
-  <path d="M20 42 Q20 12 50 12 H290 Q320 12 320 42 V250 Q320 340 170 392 Q20 340 20 250 Z" fill="#2A24C8"/>
-  <!-- Inner white keyline -->
-  <path d="M36 48 Q36 26 58 26 H282 Q304 26 304 48 V246 Q304 328 170 376 Q36 328 36 246 Z" fill="none" stroke="#FFFFFF" stroke-width="7"/>
-  <!-- Skier line art -->
-  <g stroke="#FFFFFF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 780" role="img" aria-label="Gulmarg Ski Club logo">
+  <!-- Rounded-square shield -->
+  <path d="M40 70 Q40 24 86 24 H594 Q640 24 640 70 V470 Q640 300 340 748 Q40 300 40 470 Z" fill="none"/>
+  <path d="M36 64 Q36 16 84 16 H596 Q644 16 644 64 V468
+           Q644 560 560 636 Q460 726 340 760 Q220 726 120 636 Q36 560 36 468 Z" fill="#2019C4"/>
+  <!-- Double white keyline -->
+  <path d="M70 92 Q70 52 110 52 H570 Q610 52 610 92 V460
+           Q610 540 536 606 Q446 686 340 716 Q234 686 144 606 Q70 540 70 460 Z"
+        fill="none" stroke="#fff" stroke-width="10"/>
+
+  <!-- Downhill racer in aerodynamic tuck -->
+  <g stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <!-- skis -->
-    <path d="M62 208 L262 132"/>
-    <path d="M70 222 L270 146"/>
-    <!-- legs -->
-    <path d="M150 178 L168 132 L196 122"/>
-    <path d="M158 172 L186 140"/>
-    <!-- body tucked -->
-    <path d="M196 122 Q208 96 188 84 Q170 74 152 86 L120 108"/>
-    <!-- head -->
-    <circle cx="146" cy="76" r="15"/>
-    <!-- arms -->
-    <path d="M158 96 L118 112"/>
-    <!-- poles -->
-    <path d="M120 108 L236 62"/>
-    <path d="M118 114 L240 72"/>
-    <path d="M232 56 L244 68 M240 52 L230 72"/>
+    <path d="M150 430 L470 300"/>
+    <path d="M162 452 L486 322"/>
+    <!-- boots to knees -->
+    <path d="M300 388 L330 320 L372 300"/>
+    <path d="M316 398 L356 336"/>
+    <!-- thigh + tucked torso -->
+    <path d="M372 300 Q392 250 356 224 Q328 204 296 220 L250 250"/>
+    <!-- back curve -->
+    <path d="M356 224 Q300 196 244 214"/>
+    <!-- head (helmet) -->
+    <circle cx="286" cy="196" r="26"/>
+    <!-- tucked arms forward -->
+    <path d="M300 236 L236 262"/>
+    <path d="M244 214 L214 250"/>
+    <!-- poles swept back over the shoulder -->
+    <path d="M232 258 L452 150"/>
+    <path d="M226 268 L458 164"/>
+    <path d="M446 142 L462 160 M458 138 L446 166"/>
   </g>
+
   <!-- Wordmark -->
-  <text x="170" y="278" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="52" font-weight="800" letter-spacing="2" fill="#FFFFFF">GULMARG</text>
-  <text x="170" y="326" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="10" fill="#FFFFFF">SKI CLUB</text>
+  <text x="340" y="560" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="1" fill="#fff">GULMARG</text>
+  <text x="340" y="638" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="60" font-weight="700" letter-spacing="14" fill="#fff">SKI CLUB</text>
 </svg>
