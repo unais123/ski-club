@@ -693,3 +693,87 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+
+/* --------------------------------------------------------- team cards */
+.team-card .card__media { aspect-ratio: 1 / 1; }
+.team-card .card__media img { object-position: center top; }
+.team-card .card__role {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-primary);
+}
+.team-card--lead { grid-column: span 1; }
+.team-card .card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+.team-card .card__tags span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--c-accent);
+  color: var(--c-primary);
+}
+
+/* ----------------------------------------------------- departure dates */
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+.date-col h3 {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-primary);
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 2px solid var(--c-line);
+}
+.date-col ul { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.date-col li {
+  min-width: 46px;
+  text-align: center;
+  padding: 0.5rem 0.4rem;
+  border-radius: 12px;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  font-weight: 800;
+  color: var(--c-navy);
+  transition: transform 0.35s var(--ease-out), border-color 0.35s, background 0.35s;
+}
+.date-col li:hover {
+  transform: translateY(-3px);
+  border-color: var(--c-primary);
+  background: var(--c-accent);
+}
+@media (max-width: 780px) { .date-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* --------------------------------------------------- safety checklist */
+.safety-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2rem; }
+.safety-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.safety-item__n {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-accent);
+  color: var(--c-primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+.safety-item h3 { font-size: 0.98rem; margin-bottom: 0.2rem; }
+.safety-item p { font-size: 0.86rem; }
+@media (max-width: 680px) { .safety-grid { grid-template-columns: 1fr; } }
