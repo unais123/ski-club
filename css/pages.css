@@ -145,6 +145,19 @@
   transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
 .price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-med); }
+.price-card__media {
+  margin: -2.2rem -2rem 1.5rem;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.price-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out);
+}
+.price-card:hover .price-card__media img { transform: scale(1.06); }
 .price-card--featured {
   background: var(--g-brand);
   color: rgba(255, 255, 255, 0.85);

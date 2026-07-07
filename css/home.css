@@ -183,6 +183,27 @@
   font-weight: 600;
   color: var(--c-navy);
 }
+.founder-sign {
+  margin-top: 1.6rem;
+  font-family: "Georgia", serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  line-height: 1.2;
+}
+.founder-sign span {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font);
+  font-style: normal;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
 .about-split__points li::before {
   content: "✓";
   flex-shrink: 0;
