@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="booking/booking.css">
 
   <script type="application/ld+json">
 {
@@ -221,58 +222,7 @@
           </div>
         </div>
 
-        <form class="form" data-demo aria-label="Booking enquiry form">
-          <h2 style="font-size:1.4rem; margin-bottom:1.4rem">Booking Enquiry</h2>
-          <div class="form__row">
-            <div class="form__field">
-              <label for="f-name">Full Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
-            </div>
-            <div class="form__field">
-              <label for="f-email">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__field">
-              <label for="f-phone">Phone / WhatsApp</label>
-              <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 …">
-            </div>
-            <div class="form__field">
-              <label for="f-adventure">Adventure</label>
-              <select id="f-adventure" name="adventure" required>
-                <option value="">Choose one…</option>
-                <option>Skiing Course</option>
-                <option>Snowboarding Course</option>
-                <option>Kashmir Great Lakes Trek</option>
-                <option>Tarsar Marsar Trek</option>
-                <option>Mount Apharwat Summit</option>
-                <option>Sunset Peak Expedition</option>
-                <option>Luxury Tour Package</option>
-                <option>Classic Tour Package</option>
-                <option>Offbeat Kashmir (Gurez / Bangus / Chatpal / Daksum)</option>
-                <option>Ladakh Package</option>
-                <option>Something Custom</option>
-              </select>
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__field">
-              <label for="f-dates">Preferred Dates</label>
-              <input id="f-dates" name="dates" type="text" placeholder="e.g. 20–27 Dec 2026">
-            </div>
-            <div class="form__field">
-              <label for="f-group">Group Size</label>
-              <input id="f-group" name="group" type="number" min="1" max="40" placeholder="2">
-            </div>
-          </div>
-          <div class="form__field">
-            <label for="f-msg">Tell us more</label>
-            <textarea id="f-msg" name="message" placeholder="Experience level, occasions, dream moments — anything that helps us craft your trip."></textarea>
-          </div>
-          <button class="btn btn--primary" data-magnetic type="submit" style="width:100%">Send Enquiry <span class="btn-arrow" aria-hidden="true">→</span></button>
-          <p class="form__status" aria-live="polite"></p>
-        </form>
+        <div id="booking-container" data-expedition="Custom"></div>
       </div>
     </section>
 
@@ -380,6 +330,9 @@
     </div>
   </footer>
 
+  <!-- Booking widget (optional EmailJS SDK for email action) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="booking/booking.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
