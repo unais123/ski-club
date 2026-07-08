@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="booking/booking.css">
 
   <!-- Structured data: Organization + Website -->
   <script type="application/ld+json">
@@ -680,6 +681,13 @@
     </section>
 
     <!-- ================= CTA ================= -->
+    <!-- ================= BOOKING WIDGET ================= -->
+    <section class="section section--tint" id="book" aria-label="Book your adventure">
+      <div class="container">
+        <div id="booking-container" data-expedition="Custom"></div>
+      </div>
+    </section>
+
     <section class="section" aria-label="Call to action">
       <div class="container">
         <div class="cta" data-reveal="zoom">
@@ -746,6 +754,9 @@
   </footer>
 
   <script src="js/hero-sequence.js" defer></script>
+  <!-- Booking widget (optional EmailJS SDK for email action) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="booking/booking.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
