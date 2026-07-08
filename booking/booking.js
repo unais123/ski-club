@@ -326,6 +326,12 @@
     expSelect.addEventListener("change", (e) => { setFilled(e.target); updateLevel(); });
     levelSelect.addEventListener("change", (e) => { setFilled(e.target); clearError(e.target); });
     updateLevel(); // reflect any preselected expedition on load
+    // optional per-page skill-level preselect: <div ... data-level="Advanced">
+    const preLevel = container.getAttribute("data-level");
+    if (preLevel && !levelField.hidden) {
+      levelSelect.value = preLevel;
+      setFilled(levelSelect);
+    }
 
     // ---- stepper
     form.querySelectorAll(".gsc-step-btn").forEach(btn => btn.addEventListener("click", () => {
