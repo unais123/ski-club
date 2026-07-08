@@ -141,6 +141,7 @@
           <div class="gsc-date-toggle" role="tablist" aria-label="Date selection mode">
             <button type="button" data-mode="range" class="is-active" role="tab">Date range</button>
             <button type="button" data-mode="single" role="tab">Single day</button>
+            <button type="button" data-mode="custom" role="tab">Custom</button>
           </div>
           <div class="gsc-date-display" style="position:relative">
             <input type="text" id="gsc-dates" name="dates" placeholder=" " readonly aria-haspopup="dialog">
@@ -260,6 +261,10 @@
     }
 
     el.addEventListener("click", (e) => {
+      // Keep clicks inside the calendar from reaching the document-level
+      // "click outside → close" handler. Re-rendering detaches the clicked
+      // node, which would otherwise be mis-read as an outside click.
+      e.stopPropagation();
       const nav = e.target.closest("[data-nav]");
       if (nav) { view = new Date(view.getFullYear(), view.getMonth() + Number(nav.dataset.nav), 1); render(); return; }
       const day = e.target.closest(".gsc-cal__day[data-d]");
@@ -311,6 +316,7 @@
     const levelSelect = form.querySelector("#gsc-level");
     let personCount = 1;
     let submitting = false;
+    let dateMode = "range";   // 'range' | 'single' | 'custom'
 
     // Show the skill-level field only for lesson-type expeditions.
     function updateLevel() {
@@ -350,12 +356,31 @@
       endInput.value = end ? end.toISOString().slice(0, 10) : "";
       clearError(datesInput);
     });
-    datesInput.addEventListener("click", () => cal.isOpen() ? cal.close() : cal.open());
-    datesInput.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cal.open(); } });
+    datesInput.addEventListener("click", () => {
+      if (dateMode === "custom") return;               // free-text field, no popover
+      cal.isOpen() ? cal.close() : cal.open();
+    });
+    datesInput.addEventListener("keydown", (e) => {
+      if (dateMode === "custom") return;
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); cal.open(); }
+    });
     form.querySelectorAll(".gsc-date-toggle button").forEach(b => b.addEventListener("click", () => {
       form.querySelectorAll(".gsc-date-toggle button").forEach(x => x.classList.remove("is-active"));
       b.classList.add("is-active");
-      cal.setMode(b.dataset.mode);
+      dateMode = b.dataset.mode;
+      datesInput.value = ""; startInput.value = ""; endInput.value = "";
+      if (dateMode === "custom") {
+        cal.close();
+        datesInput.readOnly = false;
+        datesInput.placeholder = "e.g. 15 Dec to 22 Dec, or flexible";
+        setFilled(datesInput);
+        datesInput.focus();
+      } else {
+        datesInput.readOnly = true;
+        datesInput.placeholder = " ";
+        setFilled(datesInput);
+        cal.setMode(dateMode);
+      }
     }));
     // close calendar on outside click / escape
     document.addEventListener("click", (e) => {
@@ -382,7 +407,9 @@
       check(email, isEmail(email.value.trim()));
       check(exp, !!exp.value);
       check(from, from.value.trim().length >= 2);
-      check(datesInput, !!startInput.value);
+      check(datesInput, dateMode === "custom"
+        ? datesInput.value.trim().length >= 3
+        : !!startInput.value);
       if (!levelField.hidden) check(levelSelect, !!levelSelect.value);
       if (!ok) {
         const firstBad = form.querySelector(".gsc-invalid");
@@ -399,7 +426,9 @@
         const d = new Date(iso + "T00:00:00");
         return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)} ${d.getFullYear()}`;
       };
-      const datesLabel = (s === e || !e) ? fmtD(s) : `${fmtD(s)} to ${fmtD(e)}`;
+      const datesLabel = dateMode === "custom"
+        ? form.querySelector("#gsc-dates").value.trim()
+        : ((s === e || !e) ? fmtD(s) : `${fmtD(s)} to ${fmtD(e)}`);
       return {
         name: form.querySelector("#gsc-name").value.trim(),
         phone: `${dial.value} ${form.querySelector("#gsc-phone").value.trim()}`,
@@ -535,6 +564,12 @@ Please confirm availability.`;
         toast.classList.remove("is-show");
         personCount = 1; persons.textContent = "1";
         startInput.value = ""; endInput.value = "";
+        // reset date picker back to range mode
+        dateMode = "range";
+        datesInput.readOnly = true; datesInput.placeholder = " "; datesInput.value = "";
+        form.querySelectorAll(".gsc-date-toggle button").forEach(x =>
+          x.classList.toggle("is-active", x.dataset.mode === "range"));
+        cal.setMode("range");
         form.querySelectorAll("input, textarea, select").forEach(setFilled);
         setFilled(expSelect);
         updateLevel();
