@@ -391,7 +391,10 @@
   color: var(--c-white);
   font-size: 0.78rem;
   font-weight: 700;
+  z-index: 2;
 }
+/* full-tile link for live Instagram reels (opens the reel) */
+.reel__cover { position: absolute; inset: 0; z-index: 4; }
 
 /* ---------------------------------------------------------- testimonials */
 .testimonial-hero {
